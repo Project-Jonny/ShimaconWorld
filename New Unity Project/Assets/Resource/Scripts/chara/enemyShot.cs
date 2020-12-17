@@ -24,6 +24,12 @@ public class enemyShot : MonoBehaviour
             gameObject.SetActive(false);
             Destroy(gameObject);
         }
+
+        if (collision.gameObject.tag == "Ball")
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
     }
 
 }

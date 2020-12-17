@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     public bool enemyDown;
 
+    public GameObject door;
+
     void Start()
     {
         timerCount = 10;
@@ -42,6 +44,11 @@ public class GameManager : MonoBehaviour
             timerCount = 0;
             timerText.text = timerCount.ToString("f0");
             // timeUp
+        }
+
+        if (enemyCount <= 5)
+        {
+            door.SetActive(true);
         }
     }
 

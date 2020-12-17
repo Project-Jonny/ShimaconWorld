@@ -14,7 +14,10 @@ public class PlayerMove : MonoBehaviour
     public GameObject bullet;
     public Vector2 oldPos;
 
-    public GameObject Ball;
+    public GameObject ball;
+    public GameObject[] enemys;
+
+    public bool bear = false;
 
     void Start()
     {
@@ -76,9 +79,23 @@ public class PlayerMove : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Cure")
         {
-            Debug.Log("trigger");
+            ball.SetActive(true);
+            Destroy(collision.gameObject);
+            Invoke("BallOff", 5f);
+        }
+
+        if (collision.gameObject.tag == "Broke")
+        {
+            enemys = GameObject.FindGameObjectsWithTag("Enemy");
+
+            for (int i = 0; i < enemys.Length; i++)
+            {
+                enemys[i].GetComponent<EnemyMove>().DeathPanic();
+            }
+
+            Destroy(collision.gameObject);
         }
     }
 
@@ -86,7 +103,12 @@ public class PlayerMove : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            Debug.Log("collision");
+            // respawn
         }
+    }
+
+    void BallOff()
+    {
+        ball.SetActive(false);
     }
 }

@@ -15,6 +15,7 @@ TagManager:
   - Ball
   - Cure
   - Broke
+  - Door
   layers:
   - Default
   - TransparentFX

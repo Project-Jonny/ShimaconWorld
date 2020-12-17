@@ -97,4 +97,20 @@ public class EnemyMove : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void DeathPanic()
+    {
+        Instantiate(DestroyAni, transform.position, Quaternion.identity);
+        gameManager.enemyCount--;
+        gameManager.Search();
+
+        Destroy(gameObject);
+    }
+
+    public void DoorClose()
+    {
+        Instantiate(DestroyAni, transform.position, Quaternion.identity);
+        gameManager.enemyCount = 0;
+        Destroy(gameObject);
+    }
 }

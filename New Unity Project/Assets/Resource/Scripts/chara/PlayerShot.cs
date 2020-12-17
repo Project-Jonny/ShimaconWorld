@@ -7,6 +7,8 @@ public class PlayerShot : MonoBehaviour
     Vector3 direction;
     float shotSpeed = 7;
 
+    public GameObject bulletEffect;
+
     void Start()
     {
         Destroy(gameObject, 3f);
@@ -26,6 +28,13 @@ public class PlayerShot : MonoBehaviour
     {
         if (collision.gameObject.tag == "Block" || collision.gameObject.tag == "Wall" || collision.gameObject.tag == "EnemyBullet" || collision.gameObject.tag == "Enemy")
         {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "EnemyBullet")
+        {
+            Instantiate(bulletEffect, transform.position, Quaternion.identity);
             gameObject.SetActive(false);
             Destroy(gameObject);
         }

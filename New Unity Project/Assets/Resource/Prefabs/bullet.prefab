@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b97b79a4501f44efb849692ae83d201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyAni: {fileID: 6637110252536228689, guid: afcabcf9b17d44b6e8c9d7f980c895a0,
+  bulletEffect: {fileID: 8019991108955960736, guid: 341618cc57fc94f29b84c95618175635,
     type: 3}
 --- !u!58 &9135259185187659076
 CircleCollider2D:

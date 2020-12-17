@@ -54,6 +54,7 @@ public class Chase : MonoBehaviour
                 heartIcon.SetActive(false);
                 direction = Vector2.zero;
                 setChase = false;
+                target.bear = false;
             }
         }
         if (inputR && !setChase)
@@ -61,6 +62,7 @@ public class Chase : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 setChase = true;
+                target.bear = true;
             }
         }
 

@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 8
+  m_SortingOrder: 10
   m_Sprite: {fileID: -2275071983613723935, guid: 0205a71d81f924c65bfbab84066d067d,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -145,6 +145,7 @@ MonoBehaviour:
   lastMove: {x: 0, y: 0}
   bullet: {fileID: 5886160903217761706, guid: 246e3e46c511b4104a72a9bb0d683be3, type: 3}
   oldPos: {x: 0, y: 0}
+  ball: {fileID: 6535999268334329405}
 --- !u!58 &2100592934376609422
 CircleCollider2D:
   m_ObjectHideFlags: 0
