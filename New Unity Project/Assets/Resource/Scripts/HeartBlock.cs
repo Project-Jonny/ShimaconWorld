@@ -7,6 +7,8 @@ public class HeartBlock : MonoBehaviour
     [SerializeField] Sprite[] blockSprites;
     public SpriteRenderer spriteRenderer;
 
+    public GameObject DestroyEffect;
+
     private void Start()
     {
         spriteRenderer.sprite = blockSprites[0];
@@ -26,7 +28,8 @@ public class HeartBlock : MonoBehaviour
             }
             else if (spriteRenderer.sprite == blockSprites[2])
             {
-                Destroy(gameObject);
+                Instantiate(DestroyEffect, transform.position, Quaternion.identity);
+                Destroy(gameObject, 0.1f);
             }
         }
     }

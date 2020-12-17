@@ -101,6 +101,8 @@ MonoBehaviour:
   - {fileID: -5394086505165692196, guid: 3a91b60b8c2bd4935af9bd750fd62017, type: 3}
   - {fileID: 8891123234734780707, guid: 3a91b60b8c2bd4935af9bd750fd62017, type: 3}
   spriteRenderer: {fileID: 4274264060147375438}
+  DestroyEffect: {fileID: 4575584846416381502, guid: 1f128d88bd1dc4831a50519b3bee3375,
+    type: 3}
 --- !u!61 &5250415254388602234
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -110,7 +112,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 4274264060147375425}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c97ce66615f0c41b397069c57afecdef, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

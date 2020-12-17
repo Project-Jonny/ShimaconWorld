@@ -7,6 +7,14 @@ TagManager:
   - Bullet
   - Block
   - Wall
+  - Enemy
+  - EnemyBullet
+  - Bear
+  - GameManager
+  - EnemySpawn
+  - Ball
+  - Cure
+  - Broke
   layers:
   - Default
   - TransparentFX
@@ -16,8 +24,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Enemy
+  - Player
   - 
   - 
   - 

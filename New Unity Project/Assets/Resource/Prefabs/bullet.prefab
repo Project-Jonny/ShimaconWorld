@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5886160903217761704}
   - component: {fileID: 5886160903217761707}
-  - component: {fileID: 1065350020928832857}
   - component: {fileID: 1180277251021321720}
   - component: {fileID: 388408518038978750}
   - component: {fileID: 1546206779235604545}
+  - component: {fileID: 9135259185187659076}
   m_Layer: 0
   m_Name: bullet
   m_TagString: Bullet
@@ -85,75 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &1065350020928832857
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5886160903217761706}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: c97ce66615f0c41b397069c57afecdef, type: 2}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.15002799, y: 0.08996345}
-  - {x: -0.13000834, y: 0.09015729}
-  - {x: -0.12994361, y: 0.10994859}
-  - {x: -0.11011422, y: 0.1101902}
-  - {x: -0.109775305, y: 0.12971953}
-  - {x: -0.030234456, y: 0.12947756}
-  - {x: -0.030135274, y: 0.10993237}
-  - {x: -0.009983897, y: 0.109798774}
-  - {x: -0.010314822, y: 0.0897228}
-  - {x: 0.009815931, y: 0.08987795}
-  - {x: 0.010078549, y: 0.110019885}
-  - {x: 0.029922009, y: 0.109921485}
-  - {x: 0.029821396, y: 0.1297794}
-  - {x: 0.11010623, y: 0.12962727}
-  - {x: 0.10992098, y: 0.11004396}
-  - {x: 0.13012004, y: 0.10995165}
-  - {x: 0.12995577, y: 0.08990097}
-  - {x: 0.14976168, y: 0.089898415}
-  - {x: 0.14974189, y: 0.010543559}
-  - {x: 0.13005972, y: 0.009966522}
-  - {x: 0.1302011, y: -0.009825913}
-  - {x: 0.10990238, y: -0.009912042}
-  - {x: 0.110332966, y: -0.029454682}
-  - {x: 0.08984566, y: -0.029559474}
-  - {x: 0.09005046, y: -0.049943607}
-  - {x: 0.07021165, y: -0.050146416}
-  - {x: 0.06992197, y: -0.06995137}
-  - {x: 0.0498178, y: -0.06998851}
-  - {x: 0.049561262, y: -0.089828126}
-  - {x: 0.049561262, y: -0.08945762}
-  - {x: 0.030009985, y: -0.08966866}
-  - {x: 0.029864311, y: -0.11014679}
-  - {x: 0.009915352, y: -0.110050455}
-  - {x: 0.00993216, y: -0.12977065}
-  - {x: -0.010119915, y: -0.13019061}
-  - {x: -0.010098815, y: -0.11000736}
-  - {x: -0.030014277, y: -0.11001366}
-  - {x: -0.030124187, y: -0.08996498}
-  - {x: -0.05006218, y: -0.090264335}
-  - {x: -0.05006218, y: -0.09066726}
-  - {x: -0.04975772, y: -0.06996089}
-  - {x: -0.070040345, y: -0.07015385}
-  - {x: -0.07002032, y: -0.05002796}
-  - {x: -0.08987391, y: -0.04978951}
-  - {x: -0.09007537, y: -0.050393887}
-  - {x: -0.08992779, y: -0.029967012}
-  - {x: -0.11008489, y: -0.030078284}
-  - {x: -0.11008489, y: -0.030078284}
-  - {x: -0.10990322, y: -0.009900911}
-  - {x: -0.13007545, y: -0.010066677}
-  - {x: -0.13018572, y: 0.010059005}
-  - {x: -0.15013587, y: 0.009767247}
-  - {x: -0.15003705, y: 0.08995431}
 --- !u!114 &1180277251021321720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,3 +131,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b97b79a4501f44efb849692ae83d201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyAni: {fileID: 6637110252536228689, guid: afcabcf9b17d44b6e8c9d7f980c895a0,
+    type: 3}
+--- !u!58 &9135259185187659076
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5886160903217761706}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: c97ce66615f0c41b397069c57afecdef, type: 2}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.0020259023}
+  serializedVersion: 2
+  m_Radius: 0.12804453

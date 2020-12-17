@@ -7,6 +7,11 @@ public class PlayerShot : MonoBehaviour
     Vector3 direction;
     float shotSpeed = 7;
 
+    void Start()
+    {
+        Destroy(gameObject, 3f);
+    }
+
     void Update()
     {
         transform.position += direction * shotSpeed * Time.deltaTime;
@@ -19,8 +24,7 @@ public class PlayerShot : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.tag == "Block" || collision.gameObject.tag == "Wall")
+        if (collision.gameObject.tag == "Block" || collision.gameObject.tag == "Wall" || collision.gameObject.tag == "EnemyBullet" || collision.gameObject.tag == "Enemy")
         {
             gameObject.SetActive(false);
             Destroy(gameObject);

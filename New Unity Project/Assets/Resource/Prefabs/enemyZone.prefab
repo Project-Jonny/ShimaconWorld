@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5616921685114077961}
   - component: {fileID: 4957538219549734660}
+  - component: {fileID: 3532173698611499664}
   m_Layer: 0
   m_Name: enemyZone
-  m_TagString: Untagged
+  m_TagString: EnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 7f2c0e4fff940405a8f5a2f482daa842, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -81,3 +82,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3532173698611499664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4063946068919553669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff3b0bea62442418e9fe43acda0938b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnEffect: {fileID: 196907882324584331, guid: 9657f5a604b194eb98e01d22ea6faf47,
+    type: 3}
+  enemy:
+  - {fileID: 8871717251700024375, guid: 7956e8adbacbc48689aade782d9967ce, type: 3}
+  - {fileID: 4190106200075924593, guid: 2cb287ec714294a18902f22c23bd1cec, type: 3}
+  - {fileID: 3004787616085849442, guid: 57b1a483fddaf4078a5f9a75bd05171a, type: 3}
+  - {fileID: 1177988895771366575, guid: 8edc1e2e339944684921dfc8e160ddee, type: 3}

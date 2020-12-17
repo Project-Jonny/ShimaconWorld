@@ -11,8 +11,15 @@ public class PlayerMove : MonoBehaviour
 
     Vector2 movement;
     public Vector2 lastMove;
-
     public GameObject bullet;
+    public Vector2 oldPos;
+
+    public GameObject Ball;
+
+    void Start()
+    {
+        StartCoroutine(SavePos());
+    }
 
     void Update()
     {
@@ -56,5 +63,30 @@ public class PlayerMove : MonoBehaviour
     {
         var shots = Instantiate(bullet, transform.position, transform.rotation);
         shots.GetComponent<PlayerShot>().SetDirecion(lastMove);
+    }
+
+    IEnumerator SavePos()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.2f);
+            oldPos = transform.position;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("trigger");
+        }
+    }
+
+     void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("collision");
+        }
     }
 }
