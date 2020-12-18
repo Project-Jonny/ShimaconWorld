@@ -38,5 +38,13 @@ public class PlayerShot : MonoBehaviour
             gameObject.SetActive(false);
             Destroy(gameObject);
         }
+
+        if (collision.gameObject.tag == "Arrow")
+        {
+            Instantiate(bulletEffect, collision.transform.position, Quaternion.identity);
+            Destroy(collision.gameObject);
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
     }
 }

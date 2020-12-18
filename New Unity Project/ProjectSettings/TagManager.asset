@@ -16,6 +16,9 @@ TagManager:
   - Cure
   - Broke
   - Door
+  - Arrow
+  - dragUP
+  - dragDOWN
   layers:
   - Default
   - TransparentFX
