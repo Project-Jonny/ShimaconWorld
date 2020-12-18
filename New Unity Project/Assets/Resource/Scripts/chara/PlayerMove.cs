@@ -17,10 +17,20 @@ public class PlayerMove : MonoBehaviour
     public GameObject ball;
     public GameObject[] enemys;
 
+    SpriteRenderer spriteRenderer;
+
     public bool bear = false;
+
+    Chase chase;
+
+    Vector2 firstPos;
 
     void Start()
     {
+        chase = GameObject.FindGameObjectWithTag("Bear").GetComponent<Chase>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        firstPos = transform.position;
         StartCoroutine(SavePos());
     }
 
@@ -97,18 +107,46 @@ public class PlayerMove : MonoBehaviour
 
             Destroy(collision.gameObject);
         }
+
+        if (collision.gameObject.tag == "EnemyBullet")
+        {
+            chase.Byebye();
+            StartCoroutine(Flash());
+            GameData.instance.lifeCount--;
+            GameData.instance.power = 0;
+            transform.position = firstPos;
+        }
     }
 
      void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            // respawn
+            chase.Byebye();
+            StartCoroutine(Flash());
+            GameData.instance.lifeCount--;
+            GameData.instance.power = 0;
+            transform.position = firstPos;
         }
     }
 
     void BallOff()
     {
         ball.SetActive(false);
+    }
+
+    IEnumerator Flash()
+    {
+        int count = 0;
+        while (count < 5)
+        {
+            // 消える
+            spriteRenderer.color = new Color(1f, 1f, 1f, 0.2f);
+            yield return new WaitForSeconds(0.1f); // 0.1秒まて
+            // つく
+            spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+            yield return new WaitForSeconds(0.1f); // 0.1秒まて
+            count++;
+        }
     }
 }

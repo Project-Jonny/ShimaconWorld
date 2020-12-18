@@ -11,6 +11,24 @@ public class PlayerShot : MonoBehaviour
 
     void Start()
     {
+        if (GameData.instance.power <= 1)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+            bulletEffect.transform.localScale = new Vector3(1, 1, 1);
+        }
+
+        else if (GameData.instance.power >= 2 && GameData.instance.power <= 3)
+        {
+            transform.localScale = new Vector3(1.2f, 1.2f, 1);
+            bulletEffect.transform.localScale = new Vector3(1.2f, 1.2f, 1);
+        }
+
+        else if (GameData.instance.power >= 4)
+        {
+            transform.localScale = new Vector3(1.5f, 1.5f, 1);
+            bulletEffect.transform.localScale = new Vector3(1.5f, 1.5f, 1);
+        }
+
         Destroy(gameObject, 3f);
     }
 
@@ -26,7 +44,7 @@ public class PlayerShot : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Block" || collision.gameObject.tag == "Wall" || collision.gameObject.tag == "EnemyBullet" || collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Block" || collision.gameObject.tag == "Wall" ||collision.gameObject.tag == "Enemy")
         {
             gameObject.SetActive(false);
             Destroy(gameObject);

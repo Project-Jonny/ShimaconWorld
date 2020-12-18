@@ -119,4 +119,12 @@ public class Chase : MonoBehaviour
         animator.SetFloat("LastMove_Y", lastMove.y);
         animator.SetFloat("Speed", direction.sqrMagnitude);
     }
+
+    public void Byebye()
+    {
+        heartIcon.SetActive(false);
+        direction = Vector2.zero;
+        setChase = false;
+        target.bear = false;
+    }
 }

@@ -21,12 +21,16 @@ public class EnemyMove : MonoBehaviour
         rb.velocity = direction;
 
         animator = GetComponent<Animator>();
-        target = GameObject.FindGameObjectWithTag("Bear").GetComponent<Chase>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
-
-        StartCoroutine(RandomMove());
-        StartCoroutine(Shooting());
+        GameObject bear = GameObject.FindGameObjectWithTag("Bear");
+        if (bear != null)
+        {
+            target = GameObject.FindGameObjectWithTag("Bear").GetComponent<Chase>();
+            gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+            StartCoroutine(RandomMove());
+            StartCoroutine(Shooting());
+        }
     }
 
     IEnumerator RandomMove()
@@ -78,6 +82,11 @@ public class EnemyMove : MonoBehaviour
 
     void Update()
     {
+        if (target == null)
+        {
+            return;
+        }
+
         if (target.emotional == true)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.transform.position, 1 * Time.deltaTime);
@@ -90,6 +99,21 @@ public class EnemyMove : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
+            if (GameData.instance.power <= 1)
+            {
+                DestroyAni.transform.localScale = new Vector3(1, 1, 1);
+            }
+
+            else if (GameData.instance.power >= 2 && GameData.instance.power <= 3)
+            {
+                DestroyAni.transform.localScale = new Vector3(1.2f, 1.2f, 1);
+            }
+
+            else if (GameData.instance.power >= 4)
+            {
+                DestroyAni.transform.localScale = new Vector3(1.5f, 1.5f, 1);
+            }
+
             Instantiate(DestroyAni, transform.position, Quaternion.identity);
             gameManager.enemyCount--;
             gameManager.Search();
