@@ -146,6 +146,8 @@ MonoBehaviour:
   bullet: {fileID: 5886160903217761706, guid: 246e3e46c511b4104a72a9bb0d683be3, type: 3}
   oldPos: {x: 0, y: 0}
   ball: {fileID: 6535999268334329405}
+  enemys: []
+  bear: 0
 --- !u!58 &2100592934376609422
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -179,7 +181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6084806872059733060
 Transform:
   m_ObjectHideFlags: 0

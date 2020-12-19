@@ -9,6 +9,8 @@ public class HeartBlock : MonoBehaviour
 
     public GameObject DestroyEffect;
 
+    public GameObject[] items;
+
     private void Start()
     {
         spriteRenderer.sprite = blockSprites[0];
@@ -33,6 +35,11 @@ public class HeartBlock : MonoBehaviour
                 else if (spriteRenderer.sprite == blockSprites[2])
                 {
                     Instantiate(DestroyEffect, transform.position, Quaternion.identity);
+
+                    int num = Random.Range(0, 100);
+
+                    RandomNum();
+
                     Destroy(gameObject, 0.1f);
                 }
             }
@@ -52,6 +59,9 @@ public class HeartBlock : MonoBehaviour
                 else if (spriteRenderer.sprite == blockSprites[2])
                 {
                     Instantiate(DestroyEffect, transform.position, Quaternion.identity);
+
+                    RandomNum();
+
                     Destroy(gameObject, 0.1f);
                 }
             }
@@ -63,16 +73,25 @@ public class HeartBlock : MonoBehaviour
                 if (spriteRenderer.sprite == blockSprites[0])
                 {
                     Instantiate(DestroyEffect, transform.position, Quaternion.identity);
+
+                    RandomNum();
+
                     Destroy(gameObject, 0.1f);
                 }
                 else if (spriteRenderer.sprite == blockSprites[1])
                 {
                     Instantiate(DestroyEffect, transform.position, Quaternion.identity);
+
+                    RandomNum();
+
                     Destroy(gameObject, 0.1f);
                 }
                 else if (spriteRenderer.sprite == blockSprites[2])
                 {
                     Instantiate(DestroyEffect, transform.position, Quaternion.identity);
+
+                    RandomNum();
+
                     Destroy(gameObject, 0.1f);
                 }
             }
@@ -91,8 +110,22 @@ public class HeartBlock : MonoBehaviour
             else if (spriteRenderer.sprite == blockSprites[2])
             {
                 Instantiate(DestroyEffect, transform.position, Quaternion.identity);
+
+                RandomNum();
+
                 Destroy(gameObject, 0.1f);
             }
+        }
+    }
+
+    void RandomNum()
+    {
+        int num = Random.Range(0, 100);
+
+        if (num < 20)
+        {
+            int r = Random.Range(0, items.Length);
+            Instantiate(items[r], transform.position, Quaternion.identity);
         }
     }
 }

@@ -8,17 +8,29 @@ public class DragManager : MonoBehaviour
 
     void Start()
     {
-        
+        StartCoroutine(InstDrag());
+        StartCoroutine(InstDrag2());
     }
 
     IEnumerator InstDrag()
     {
-        yield return null;
-
         while (true)
         {
+            yield return new WaitForSeconds(0.8f);
+            int x = Random.Range(-9, 9);
             int r = Random.Range(0, drags.Length);
-            drags[r].GetComponent<EnemySpawn>().Spawn();
+            Instantiate(drags[r],new Vector3(x,5.5f,0),Quaternion.identity);
+        }
+    }
+
+    IEnumerator InstDrag2()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1.5f);
+            int x = Random.Range(-8, 8);
+            int r = Random.Range(0, drags.Length);
+            Instantiate(drags[r], new Vector3(x, 5.5f, 0), Quaternion.identity);
         }
     }
 }

@@ -19,14 +19,18 @@ public class GameManager : MonoBehaviour
 
     public GameObject door;
 
+    public GameObject gameOver;
+
     void Start()
     {
-        timerCount = 10;
+        timerCount = 60;
         enemyCount = 20;
         spawnCount = enemyCount;
 
         timerText.text = timerCount.ToString("f0");
         enemyText.text = enemyCount.ToString("f0");
+
+        gameOver.SetActive(false);
     }
 
     void Update()
@@ -43,12 +47,19 @@ public class GameManager : MonoBehaviour
         {
             timerCount = 0;
             timerText.text = timerCount.ToString("f0");
+
+            gameOver.SetActive(true);
             // timeUp
         }
 
         if (enemyCount <= 5)
         {
             door.SetActive(true);
+        }
+
+        if (GameData.instance.lifeCount == 0)
+        {
+            gameOver.SetActive(true);
         }
     }
 

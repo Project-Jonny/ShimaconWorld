@@ -32,6 +32,8 @@ public class PlayerMove : MonoBehaviour
 
         firstPos = transform.position;
         StartCoroutine(SavePos());
+        StartCoroutine(Flash());
+        Invoke("BallOff", 5f);
     }
 
     void Update()
@@ -108,7 +110,7 @@ public class PlayerMove : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
-        if (collision.gameObject.tag == "EnemyBullet")
+        if (collision.gameObject.tag == "EnemyBullet" && ball.activeSelf == false)
         {
             chase.Byebye();
             StartCoroutine(Flash());
@@ -116,17 +118,32 @@ public class PlayerMove : MonoBehaviour
             GameData.instance.power = 0;
             transform.position = firstPos;
         }
+
+        if (collision.gameObject.tag == "dragUP")
+        {
+            GameData.instance.power++;
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.tag == "dragDOWN")
+        {
+            GameData.instance.power--;
+            Destroy(collision.gameObject);
+        }
     }
 
      void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (ball.activeSelf == false)
         {
-            chase.Byebye();
-            StartCoroutine(Flash());
-            GameData.instance.lifeCount--;
-            GameData.instance.power = 0;
-            transform.position = firstPos;
+            if (collision.gameObject.tag == "Enemy")
+            {
+                chase.Byebye();
+                StartCoroutine(Flash());
+                GameData.instance.lifeCount--;
+                GameData.instance.power = 0;
+                transform.position = firstPos;
+            }
         }
     }
 

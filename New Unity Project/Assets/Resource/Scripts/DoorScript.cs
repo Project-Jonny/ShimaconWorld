@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DoorScript : MonoBehaviour
 {
@@ -10,9 +11,11 @@ public class DoorScript : MonoBehaviour
     public GameObject[] enemys;
     public GameObject bear;
 
+    public string scene = "";
+
     void Start()
     {
-        CloseDoor();
+        spriteRenderer.sprite = doorSprites[0];
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -42,5 +45,11 @@ public class DoorScript : MonoBehaviour
     void CloseDoor()
     {
         spriteRenderer.sprite = doorSprites[0];
+        FadeIOManager.instance.FadeOutToIn(() => Move());
+    }
+
+    void Move()
+    {
+        SceneManager.LoadScene(scene);
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3255494713517257397}
   - component: {fileID: 3255494713517257396}
   - component: {fileID: 9140559168072054519}
+  - component: {fileID: 6857430867612313177}
   m_Layer: 0
   m_Name: Cotton Block
   m_TagString: Wall
@@ -98,3 +99,17 @@ CircleCollider2D:
   m_Offset: {x: -0.0020060241, y: 0}
   serializedVersion: 2
   m_Radius: 0.43781343
+--- !u!114 &6857430867612313177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3255494713517257395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46496ff9eefb24b9a82651d68ed24a54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyEffect: {fileID: 7867998034501108572, guid: 61724b3f9419044c096ed64fdf2a43dc,
+    type: 3}
