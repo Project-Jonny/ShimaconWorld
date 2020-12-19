@@ -36,8 +36,6 @@ public class HeartBlock : MonoBehaviour
                 {
                     Instantiate(DestroyEffect, transform.position, Quaternion.identity);
 
-                    int num = Random.Range(0, 100);
-
                     RandomNum();
 
                     Destroy(gameObject, 0.1f);

@@ -22,5 +22,10 @@ public class GameOverPanel : MonoBehaviour
     void Move()
     {
         SceneManager.LoadScene("Stage 1");
+        GameData.instance.lifeCount = 3;
+        GameData.instance.power = 0;
+        GameData.instance.playerSpeed = 2;
+        GameData.instance.dead = false;
+        GameData.instance.bonus = false;
     }
 }

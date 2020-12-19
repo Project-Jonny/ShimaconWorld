@@ -113,3 +113,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DestroyEffect: {fileID: 7867998034501108572, guid: 61724b3f9419044c096ed64fdf2a43dc,
     type: 3}
+  items:
+  - {fileID: 2001373408157142753, guid: 566a488d70a4246c8b7352f39832cb0d, type: 3}
+  - {fileID: 1304021601301143591, guid: 1b276823170ab455c979b8203696a89c, type: 3}
+  - {fileID: 4998198631004278681, guid: d91358617d9f0428da56edfd7c917208, type: 3}
+  - {fileID: 5680474400560166182, guid: db37154e948964b36ae1f328fdff90ed, type: 3}
+  - {fileID: 5946950997483867542, guid: 48d19985254cd4d4bb60d4c1bc3fe036, type: 3}

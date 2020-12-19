@@ -22,6 +22,11 @@ public class ojamaBlock : MonoBehaviour
                 col.isTrigger = true;
             }
         }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            col.isTrigger = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -38,6 +43,11 @@ public class ojamaBlock : MonoBehaviour
             {
                 col.isTrigger = true;
             }
+        }
+
+        if (collision.gameObject.tag == "EnemyBullet")
+        {
+            col.isTrigger = true;
         }
     }
 }

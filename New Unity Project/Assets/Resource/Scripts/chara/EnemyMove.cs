@@ -82,16 +82,23 @@ public class EnemyMove : MonoBehaviour
 
     void Update()
     {
-        if (target == null)
+        if (GameData.instance.dead)
         {
-            return;
+            target.emotional = false;
         }
-
-        if (target.emotional == true)
+        else
         {
-            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, 1 * Time.deltaTime);
-            animator.SetFloat("Direction_X", target.transform.position.x - transform.position.x);
-            animator.SetFloat("Direction_Y", target.transform.position.y - transform.position.y);
+            if (target == null)
+            {
+                return;
+            }
+
+            if (target.emotional == true)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, target.transform.position, 1 * Time.deltaTime);
+                animator.SetFloat("Direction_X", target.transform.position.x - transform.position.x);
+                animator.SetFloat("Direction_Y", target.transform.position.y - transform.position.y);
+            }
         }
     }
 

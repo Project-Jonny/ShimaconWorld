@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameData : MonoBehaviour
 {
@@ -20,49 +19,22 @@ public class GameData : MonoBehaviour
         }
     }
 
-    public GameObject[] life;
-    public GameObject gauge;
-
-    public Sprite[] gaugeSprite;
-    Image sp;
-
     public int lifeCount;
     public int power;
+    public int playerSpeed;
 
+    public bool dead = false;
+    public bool bonus = false;
+    
     void Start()
     {
         lifeCount = 3;
         power = 0;
-
-        sp = gauge.GetComponent<Image>();
-        sp.sprite = gaugeSprite[0];
+        playerSpeed = 2;
     }
 
     void Update()
     {
-        if (lifeCount == 3)
-        {
-            for (int i = 0; i < life.Length; i++)
-            {
-                life[i].SetActive(true);
-            }
-        }
-        else if (lifeCount == 2)
-        {
-            LifeOff();
-            life[0].SetActive(true);
-            life[1].SetActive(true);
-        }
-        else if (lifeCount == 1)
-        {
-            LifeOff();
-            life[0].SetActive(true);
-        }
-        else if (lifeCount == 0)
-        {
-            LifeOff();
-        }
-
         if (power >= 4)
         {
             power = 4;
@@ -72,13 +44,14 @@ public class GameData : MonoBehaviour
             power = 0;
         }
 
-        sp.sprite = gaugeSprite[power];
-    }
+        if (lifeCount <= 0)
+        {
+            lifeCount = 0;
+        }
 
-    void LifeOff()
-    {
-        life[0].SetActive(false);
-        life[1].SetActive(false);
-        life[2].SetActive(false);
+        if (playerSpeed >= 5)
+        {
+            playerSpeed = 5;
+        }
     }
 }

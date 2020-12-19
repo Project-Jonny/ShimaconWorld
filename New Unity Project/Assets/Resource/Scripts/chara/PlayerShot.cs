@@ -44,7 +44,7 @@ public class PlayerShot : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Block" || collision.gameObject.tag == "Wall" ||collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Block" || collision.gameObject.tag == "Wall" ||collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "choco")
         {
             gameObject.SetActive(false);
             Destroy(gameObject);

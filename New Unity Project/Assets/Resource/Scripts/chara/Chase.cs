@@ -29,58 +29,66 @@ public class Chase : MonoBehaviour
 
     void Update()
     {
-        Anim();
-
-        if (setChase)
+        if (GameData.instance.dead)
         {
-            timer = 0;
-            emotional = false;
-            icon.SetActive(false);
-            heartIcon.SetActive(true);
-            animator.SetBool("Angry", false);
-
-            if (Vector2.Distance(transform.position, target.oldPos) > 1)
-            {
-                direction = target.oldPos - (Vector2)(transform.position);
-                transform.position = Vector2.MoveTowards(transform.position, target.oldPos, 5 * Time.deltaTime);
-            }
-            else
-            {
-                direction = Vector2.zero;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                heartIcon.SetActive(false);
-                direction = Vector2.zero;
-                setChase = false;
-                target.bear = false;
-            }
+            gameObject.SetActive(false);
         }
-        if (inputR && !setChase)
+        else
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            Anim();
+
+            if (setChase)
             {
-                setChase = true;
-                target.bear = true;
+                timer = 0;
+                emotional = false;
+                icon.SetActive(false);
+                heartIcon.SetActive(true);
+                animator.SetBool("Angry", false);
+
+                if (Vector2.Distance(transform.position, target.oldPos) > 1)
+                {
+                    direction = target.oldPos - (Vector2)(transform.position);
+                    transform.position = Vector2.MoveTowards(transform.position, target.oldPos, 5 * Time.deltaTime);
+                }
+                else
+                {
+                    direction = Vector2.zero;
+                }
+
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    heartIcon.SetActive(false);
+                    direction = Vector2.zero;
+                    setChase = false;
+                    target.bear = false;
+                }
             }
-        }
-
-        if (target == null)
-        {
-            target = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
-        }
-
-        if (!setChase)
-        {
-            timer += Time.deltaTime;
-
-            if (timer >= 10)
+            if (inputR && !setChase)
             {
-                emotional = true;
-                icon.SetActive(true);
-                animator.SetBool("Angry", true);
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    setChase = true;
+                    target.bear = true;
+                }
             }
+
+            if (target == null)
+            {
+                target = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
+            }
+
+            if (!setChase)
+            {
+                timer += Time.deltaTime;
+
+                if (timer >= 10)
+                {
+                    emotional = true;
+                    icon.SetActive(true);
+                    animator.SetBool("Angry", true);
+                }
+            }
+
         }
     }
 
@@ -89,6 +97,11 @@ public class Chase : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             inputR = true;
+        }
+
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
+        {
+            GameData.instance.dead = true;
         }
     }
 

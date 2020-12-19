@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    int moveSpeed;
 
     public Rigidbody2D rb;
     public Animator animator;
@@ -27,7 +27,13 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
-        chase = GameObject.FindGameObjectWithTag("Bear").GetComponent<Chase>();
+        moveSpeed = GameData.instance.playerSpeed;
+
+        if (!GameData.instance.bonus)
+        {
+            chase = GameObject.FindGameObjectWithTag("Bear").GetComponent<Chase>();
+        }
+
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         firstPos = transform.position;
@@ -38,15 +44,23 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
-        Animate();
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!GameData.instance.dead)
         {
-            Shot();
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+
+            Animate();
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Shot();
+            }
         }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+
     }
 
     void FixedUpdate()
@@ -119,6 +133,14 @@ public class PlayerMove : MonoBehaviour
             transform.position = firstPos;
         }
 
+        if (collision.gameObject.tag == "BossBullet" && ball.activeSelf == false)
+        {
+            StartCoroutine(Flash());
+            GameData.instance.lifeCount--;
+            GameData.instance.power = 0;
+            transform.position = firstPos;
+        }
+
         if (collision.gameObject.tag == "dragUP")
         {
             GameData.instance.power++;
@@ -128,6 +150,13 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.tag == "dragDOWN")
         {
             GameData.instance.power--;
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.tag == "Speed")
+        {
+            GameData.instance.playerSpeed++;
+            moveSpeed = GameData.instance.playerSpeed;
             Destroy(collision.gameObject);
         }
     }

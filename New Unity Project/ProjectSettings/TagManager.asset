@@ -19,6 +19,10 @@ TagManager:
   - Arrow
   - dragUP
   - dragDOWN
+  - choco
+  - Speed
+  - BossBullet
+  - Boss
   layers:
   - Default
   - TransparentFX
