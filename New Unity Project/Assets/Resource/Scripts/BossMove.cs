@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossMove : MonoBehaviour
 {
     public GameObject[] bossBullet;
+    public GameObject pien;
 
     public enum DIRECTION_TYPE
     {
@@ -29,15 +30,46 @@ public class BossMove : MonoBehaviour
         direction = DIRECTION_TYPE.LEFT;
 
         StartCoroutine(InstDrag());
+        StartCoroutine(InstDrag2());
     }
 
     IEnumerator InstDrag()
     {
+        yield return new WaitForSeconds(1);
+
         while (!bossDead)
         {
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(3);
+
+            direction = DIRECTION_TYPE.STOP;
+
+            for (int i = 0; i < 10; i++)
+            {
+                yield return new WaitForSeconds(0.2f);
+                PienBullet();
+            }
+
+            yield return new WaitForSeconds(0.2f);
+
+            if (transform.localScale == new Vector3(1, 1, 1))
+            {
+                direction = DIRECTION_TYPE.RIGHT;
+            }
+            else
+            {
+                direction = DIRECTION_TYPE.LEFT;
+            }
+        }
+    }
+
+    IEnumerator InstDrag2()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1.5f);
+            int x = Random.Range(-8, 8);
             int r = Random.Range(0, bossBullet.Length);
-            Instantiate(bossBullet[r], transform.position, Quaternion.identity);
+            Instantiate(bossBullet[r], new Vector3(x, transform.position.y, 0), Quaternion.identity);
         }
     }
 
@@ -81,6 +113,20 @@ public class BossMove : MonoBehaviour
         if (collision.gameObject.tag == "Wall")
         {
             ChangeDirection();
+        }
+    }
+
+    void PienBullet()
+    {
+        if (transform.localScale == new Vector3(1, 1, 1))
+        {
+            Instantiate(pien, new Vector3(transform.position.x - 0.2f, transform.position.y - 0.2f, 0), Quaternion.identity);
+            Instantiate(pien, new Vector3(transform.position.x + 0.3f, transform.position.y - 0.2f, 0), Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(pien, new Vector3(transform.position.x + 0.2f, transform.position.y - 0.2f, 0), Quaternion.identity);
+            Instantiate(pien, new Vector3(transform.position.x - 0.3f, transform.position.y - 0.2f, 0), Quaternion.identity);
         }
     }
 }
