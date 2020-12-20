@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameOverPanel : MonoBehaviour
 {
-    // Start is called before the first frame update
+    string scene;
+
     void Start()
     {
-        
+        scene = SceneManager.GetActiveScene().name;
     }
 
     void Update()
@@ -21,11 +22,11 @@ public class GameOverPanel : MonoBehaviour
 
     void Move()
     {
-        SceneManager.LoadScene("Stage 1");
+        SceneManager.LoadScene(scene);
         GameData.instance.lifeCount = 3;
         GameData.instance.power = 0;
         GameData.instance.playerSpeed = 2;
         GameData.instance.dead = false;
-        GameData.instance.bonus = false;
+        GameData.instance.boss = false;
     }
 }

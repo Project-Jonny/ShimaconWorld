@@ -46,7 +46,21 @@ public class EnemyMove : MonoBehaviour
             }
             // ぷえんモードを抜けると速度を0にする
             rb.velocity = Vector3.zero;
+            while (target.emotional)
+            {
+                yield return ChaseMove();
+            }
+
         }
+    }
+
+    IEnumerator ChaseMove()
+    {
+        yield return new WaitForSeconds(1);
+        direction = Normalization(target.transform.position, transform.position); // 一旦向きを入れる:ここから発射方向を決める
+        animator.SetFloat("Direction_X", direction.x);
+        animator.SetFloat("Direction_Y", direction.y);
+        rb.velocity = direction;
     }
 
     IEnumerator RandomMove()
@@ -92,22 +106,12 @@ public class EnemyMove : MonoBehaviour
     {
         if (GameData.instance.dead)
         {
-            target.emotional = false;
-        }
-        else
-        {
             if (target == null)
             {
                 return;
             }
 
-            if (target.emotional == true)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, target.transform.position, 1 * Time.deltaTime);
-                animator.SetFloat("Direction_X", target.transform.position.x - transform.position.x);
-                animator.SetFloat("Direction_Y", target.transform.position.y - transform.position.y);
-                direction = Normalization(target.transform.position, transform.position); // 一旦向きを入れる:ここから発射方向を決める
-            }
+            target.emotional = false;
         }
     }
 

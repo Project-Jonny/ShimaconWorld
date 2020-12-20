@@ -18,15 +18,21 @@ public class GameManager : MonoBehaviour
 
     public bool enemyDown;
 
+    bool hoge = false;
+
     public GameObject door;
 
     public GameObject gameOver;
 
     private void Awake()
     {
-       　if (SceneManager.GetActiveScene().name == "Stage 5" || SceneManager.GetActiveScene().name == "Stage 6")
+        if (SceneManager.GetActiveScene().name == "Stage 5" || SceneManager.GetActiveScene().name == "Stage 6")
         {
             GameData.instance.bonus = true;
+        }
+        else
+        {
+            GameData.instance.bonus = false;
         }
     }
 
@@ -36,14 +42,34 @@ public class GameManager : MonoBehaviour
         spawnCount = enemyCount;
 
         timerText.text = timerCount.ToString("f0");
-        enemyText.text = enemyCount.ToString("f0");
+
+        if (GameData.instance.bonus)
+        {
+            enemyText.text = "-";
+        }
+        else
+        {
+            enemyText.text = enemyCount.ToString("f0");
+        }
 
         gameOver.SetActive(false);
     }
 
     void Update()
     {
-        enemyText.text = enemyCount.ToString("f0");
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            FadeIOManager.instance.FadeOutToIn(() => Quit());
+        }
+
+        if (GameData.instance.bonus)
+        {
+            enemyText.text = "-";
+        }
+        else
+        {
+            enemyText.text = enemyCount.ToString("f0");
+        }
 
         if (GameData.instance.dead)
         {
@@ -51,27 +77,34 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            if (timerCount > 0)
+            if (!GameData.instance.boss)
             {
-                timerCount -= Time.deltaTime;
-                timerText.text = timerCount.ToString("f0");
-            }
-
-            else if (timerCount <= 0)
-            {
-                timerCount = 0;
-                timerText.text = timerCount.ToString("f0");
-
-                if (GameData.instance.bonus)
+                if (timerCount > 0)
                 {
-                    FadeIOManager.instance.FadeOutToIn(() => Move());
-                }
-                else
-                {
-                    gameOver.SetActive(true);
-                    GameData.instance.dead = true;
+                    timerCount -= Time.deltaTime;
+                    timerText.text = timerCount.ToString("f0");
                 }
 
+                else if (timerCount <= 0)
+                {
+                    timerCount = 0;
+                    timerText.text = timerCount.ToString("f0");
+
+                    if (GameData.instance.bonus)
+                    {
+                        if (!hoge)
+                        {
+                            hoge = true;
+                            FadeIOManager.instance.FadeOutToIn(() => Move());
+                        }
+                    }
+                    else
+                    {
+                        gameOver.SetActive(true);
+                        GameData.instance.dead = true;
+                    }
+
+                }
             }
         }
 
@@ -96,5 +129,15 @@ public class GameManager : MonoBehaviour
     void Move()
     {
         SceneManager.LoadScene("Stage 6");
+    }
+
+    void Quit()
+    {
+        SceneManager.LoadScene("Title");
+        GameData.instance.lifeCount = 3;
+        GameData.instance.power = 0;
+        GameData.instance.playerSpeed = 2;
+        GameData.instance.dead = false;
+        GameData.instance.boss = false;
     }
 }

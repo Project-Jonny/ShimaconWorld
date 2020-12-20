@@ -25,7 +25,8 @@ public class GameData : MonoBehaviour
 
     public bool dead = false;
     public bool bonus = false;
-    
+    public bool boss = false;
+
     void Start()
     {
         lifeCount = 3;

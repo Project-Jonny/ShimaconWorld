@@ -159,6 +159,14 @@ public class PlayerMove : MonoBehaviour
             moveSpeed = GameData.instance.playerSpeed;
             Destroy(collision.gameObject);
         }
+
+        if (collision.gameObject.tag == "Boss")
+        {
+            StartCoroutine(Flash());
+            GameData.instance.lifeCount--;
+            GameData.instance.power = 0;
+            transform.position = firstPos;
+        }
     }
 
      void OnCollisionEnter2D(Collision2D collision)
