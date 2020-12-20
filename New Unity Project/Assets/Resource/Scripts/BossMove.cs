@@ -176,18 +176,22 @@ public class BossMove : MonoBehaviour
 
         if (collision.gameObject.tag == "Bullet")
         {
+
             if (GameData.instance.power <= 1)
             {
+                SoundManager.instance.PlaySE(9);
                 hp -= 5;
             }
 
             else if (GameData.instance.power >= 2 && GameData.instance.power <= 3)
             {
+                SoundManager.instance.PlaySE(9);
                 hp -= 8;
             }
 
             else if (GameData.instance.power >= 4)
             {
+                SoundManager.instance.PlaySE(10);
                 hp -= 10;
             }
         }

@@ -17,6 +17,7 @@ public class Chocolate : MonoBehaviour
         {
             if (GameData.instance.power <= 1)
             {
+                SoundManager.instance.PlaySE(9);
                 if (transform.localScale == new Vector3(1, 1, 1))
                 {
                     transform.localScale = new Vector3(0.8f, 0.8f, 1);
@@ -36,6 +37,7 @@ public class Chocolate : MonoBehaviour
 
             else if (GameData.instance.power >= 2 && GameData.instance.power <= 3)
             {
+                SoundManager.instance.PlaySE(9);
                 if (transform.localScale == new Vector3(1, 1, 1))
                 {
                     transform.localScale = new Vector3(0.5f, 0.5f, 1);
@@ -56,6 +58,7 @@ public class Chocolate : MonoBehaviour
 
             else if (GameData.instance.power >= 4)
             {
+                SoundManager.instance.PlaySE(10);
                 RandomNum();
                 Destroy(gameObject, 0.1f);
             }

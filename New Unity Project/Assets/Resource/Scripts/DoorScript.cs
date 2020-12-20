@@ -24,6 +24,8 @@ public class DoorScript : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<PlayerMove>().bear == true)
             {
+                SoundManager.instance.PlaySE(3);
+
                 bear = GameObject.FindGameObjectWithTag("Bear");
                 enemys = GameObject.FindGameObjectsWithTag("Enemy");
 

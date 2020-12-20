@@ -90,6 +90,7 @@ public class PlayerMove : MonoBehaviour
 
     void Shot()
     {
+        SoundManager.instance.PlaySE(11);
         var shots = Instantiate(bullet, transform.position, transform.rotation);
         shots.GetComponent<PlayerShot>().SetDirecion(lastMove);
     }
@@ -107,6 +108,8 @@ public class PlayerMove : MonoBehaviour
     {
         if (collision.gameObject.tag == "Cure")
         {
+            SoundManager.instance.PlaySE(8);
+
             ball.SetActive(true);
             Destroy(collision.gameObject);
             Invoke("BallOff", 5f);
@@ -126,35 +129,53 @@ public class PlayerMove : MonoBehaviour
 
         if (collision.gameObject.tag == "EnemyBullet" && ball.activeSelf == false)
         {
+            SoundManager.instance.PlaySE(5);
+
             chase.Byebye();
             StartCoroutine(Flash());
             GameData.instance.lifeCount--;
             GameData.instance.power = 0;
+            GameData.instance.playerSpeed = 2;
+            moveSpeed = GameData.instance.playerSpeed;
             transform.position = firstPos;
+            ball.SetActive(true);
+            Invoke("BallOff", 3f);
         }
 
         if (collision.gameObject.tag == "BossBullet" && ball.activeSelf == false)
         {
+            SoundManager.instance.PlaySE(5);
+
             StartCoroutine(Flash());
             GameData.instance.lifeCount--;
             GameData.instance.power = 0;
+            GameData.instance.playerSpeed = 2;
+            moveSpeed = GameData.instance.playerSpeed;
+            ball.SetActive(true);
+            Invoke("BallOff", 3f);
             transform.position = firstPos;
         }
 
         if (collision.gameObject.tag == "dragUP")
         {
+            SoundManager.instance.PlaySE(1);
+
             GameData.instance.power++;
             Destroy(collision.gameObject);
         }
 
         if (collision.gameObject.tag == "dragDOWN")
         {
+            SoundManager.instance.PlaySE(2);
+
             GameData.instance.power--;
             Destroy(collision.gameObject);
         }
 
         if (collision.gameObject.tag == "Speed")
         {
+            SoundManager.instance.PlaySE(7);
+
             GameData.instance.playerSpeed++;
             moveSpeed = GameData.instance.playerSpeed;
             Destroy(collision.gameObject);
@@ -162,9 +183,15 @@ public class PlayerMove : MonoBehaviour
 
         if (collision.gameObject.tag == "Boss")
         {
+            SoundManager.instance.PlaySE(5);
+
             StartCoroutine(Flash());
             GameData.instance.lifeCount--;
             GameData.instance.power = 0;
+            GameData.instance.playerSpeed = 2;
+            moveSpeed = GameData.instance.playerSpeed;
+            ball.SetActive(true);
+            Invoke("BallOff", 3f);
             transform.position = firstPos;
         }
     }
@@ -175,10 +202,16 @@ public class PlayerMove : MonoBehaviour
         {
             if (collision.gameObject.tag == "Enemy")
             {
+                SoundManager.instance.PlaySE(5);
+
                 chase.Byebye();
                 StartCoroutine(Flash());
                 GameData.instance.lifeCount--;
                 GameData.instance.power = 0;
+                GameData.instance.playerSpeed = 2;
+                moveSpeed = GameData.instance.playerSpeed;
+                ball.SetActive(true);
+                Invoke("BallOff", 3f);
                 transform.position = firstPos;
             }
         }

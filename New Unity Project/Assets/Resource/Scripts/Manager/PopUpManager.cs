@@ -10,6 +10,8 @@ public class PopUpManager : MonoBehaviour
 
     public void ScaleOne()
     {
+        SoundManager.instance.PlaySE(12);
+
         //スケール（1,1,1）にスケーリング
         rectTran.DOScale(
             Vector3.one,  //終了時点のScale
@@ -19,6 +21,8 @@ public class PopUpManager : MonoBehaviour
 
     public void ScaleZero()
     {
+        SoundManager.instance.PlaySE(13);
+
         //スケール（0,0,0）にスケーリング
         rectTran.DOScale(
             Vector3.zero,  //終了時点のScale

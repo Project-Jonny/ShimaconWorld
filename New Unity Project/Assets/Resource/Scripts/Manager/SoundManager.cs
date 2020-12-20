@@ -29,8 +29,24 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    string currentBGM = "";
+
+    private void Start()
+    {
+        PlayBGM("Title");
+    }
+
     public void PlayBGM(string sceneName)
     {
+        if (currentBGM == sceneName)
+        {
+            return;
+        }
+        else
+        {
+            currentBGM = sceneName;
+        }
+
         audioSourceBGM.Stop();
         switch (sceneName)
         {
@@ -38,13 +54,13 @@ public class SoundManager : MonoBehaviour
             case "Title":
                 audioSourceBGM.clip = audioClipsBGM[0];
                 break;
-            case "Stage 1":
+            case "GameBGM":
                 audioSourceBGM.clip = audioClipsBGM[1];
                 break;
-            case "Stage 5":
+            case "Choco":
                 audioSourceBGM.clip = audioClipsBGM[2];
                 break;
-            case "Stage 6":
+            case "Boss":
                 audioSourceBGM.clip = audioClipsBGM[3];
                 break;
             case "Clear":

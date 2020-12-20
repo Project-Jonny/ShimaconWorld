@@ -38,6 +38,19 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        if (SceneManager.GetActiveScene().name == "Stage 1" || SceneManager.GetActiveScene().name == "Stage 2" || SceneManager.GetActiveScene().name == "Stage 3" || SceneManager.GetActiveScene().name == "Stage 4")
+        {
+            SoundManager.instance.PlayBGM("GameBGM");
+        }
+        else if (SceneManager.GetActiveScene().name == "Stage 5")
+        {
+            SoundManager.instance.PlayBGM("Choco");
+        }
+        else if (SceneManager.GetActiveScene().name == "Stage 6")
+        {
+            SoundManager.instance.PlayBGM("Boss");
+        }
+
         enemyCount = 20;
         spawnCount = enemyCount;
 

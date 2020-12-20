@@ -159,6 +159,8 @@ public class EnemyMove : MonoBehaviour
             gameManager.enemyCount--;
             gameManager.Search();
 
+            SoundManager.instance.PlaySE(6);
+
             Destroy(gameObject);
         }
     }
@@ -169,6 +171,8 @@ public class EnemyMove : MonoBehaviour
         gameManager.enemyCount--;
         gameManager.Search();
 
+        SoundManager.instance.PlaySE(4);
+
         Destroy(gameObject);
     }
 
@@ -176,6 +180,9 @@ public class EnemyMove : MonoBehaviour
     {
         Instantiate(DestroyAni, transform.position, Quaternion.identity);
         gameManager.enemyCount = 0;
+
+        SoundManager.instance.PlaySE(4);
+
         Destroy(gameObject);
     }
 }

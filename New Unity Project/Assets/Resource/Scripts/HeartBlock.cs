@@ -23,6 +23,7 @@ public class HeartBlock : MonoBehaviour
             if (GameData.instance.power <= 1)
             {
                 DestroyEffect.transform.localScale = new Vector3(1, 1, 1);
+                SoundManager.instance.PlaySE(9);
 
                 if (spriteRenderer.sprite == blockSprites[0])
                 {
@@ -45,6 +46,7 @@ public class HeartBlock : MonoBehaviour
             else if (GameData.instance.power >= 2 && GameData.instance.power <= 3)
             {
                 DestroyEffect.transform.localScale = new Vector3(1.2f, 1.2f, 1);
+                SoundManager.instance.PlaySE(9);
 
                 if (spriteRenderer.sprite == blockSprites[0])
                 {
@@ -67,6 +69,7 @@ public class HeartBlock : MonoBehaviour
             else if (GameData.instance.power >= 4)
             {
                 DestroyEffect.transform.localScale = new Vector3(1.5f, 1.5f, 1);
+                SoundManager.instance.PlaySE(10);
 
                 if (spriteRenderer.sprite == blockSprites[0])
                 {
@@ -97,6 +100,8 @@ public class HeartBlock : MonoBehaviour
 
         if (collision.gameObject.tag == "EnemyBullet")
         {
+            SoundManager.instance.PlaySE(9);
+
             if (spriteRenderer.sprite == blockSprites[0])
             {
                 spriteRenderer.sprite = blockSprites[1];

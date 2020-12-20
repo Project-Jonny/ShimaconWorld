@@ -52,6 +52,7 @@ public class PlayerShot : MonoBehaviour
 
         if (collision.gameObject.tag == "EnemyBullet")
         {
+            SoundManager.instance.PlaySE(6);
             Instantiate(bulletEffect, transform.position, Quaternion.identity);
             gameObject.SetActive(false);
             Destroy(gameObject);
@@ -59,6 +60,15 @@ public class PlayerShot : MonoBehaviour
 
         if (collision.gameObject.tag == "Arrow")
         {
+            if (GameData.instance.power <= 3)
+            {
+                SoundManager.instance.PlaySE(9);
+            }
+            else if (GameData.instance.power >= 4)
+            {
+                SoundManager.instance.PlaySE(10);
+            }
+
             Instantiate(bulletEffect, collision.transform.position, Quaternion.identity);
             Destroy(collision.gameObject);
             gameObject.SetActive(false);

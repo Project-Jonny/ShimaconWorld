@@ -13,6 +13,7 @@ public class CottonBlock : MonoBehaviour
         {
             if (GameData.instance.power >= 4)
             {
+                SoundManager.instance.PlaySE(10);
                 Instantiate(DestroyEffect, transform.position, Quaternion.identity);
 
                 int num = Random.Range(0, 100);

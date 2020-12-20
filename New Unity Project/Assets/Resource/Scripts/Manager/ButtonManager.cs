@@ -7,8 +7,14 @@ public class ButtonManager : MonoBehaviour
 {
     public string scene = "";
 
+    private void Start()
+    {
+        SoundManager.instance.PlayBGM(SceneManager.GetActiveScene().name);
+    }
+
     public void OnButton()
     {
+        SoundManager.instance.PlaySE(0);
         FadeIOManager.instance.FadeOutToIn(() => Move());
     }
 
